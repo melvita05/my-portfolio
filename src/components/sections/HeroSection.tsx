@@ -1,5 +1,14 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ExternalLink, Download, MessageCircle, Briefcase } from 'lucide-react';
+import {
+  Github,
+  Linkedin,
+  Mail,
+  ExternalLink,
+  Download,
+  MessageCircle,
+  Briefcase,
+} from 'lucide-react';
 import DeveloperMonitor from '../monitor/DeveloperMonitor';
 
 interface HeroSectionProps {
@@ -14,8 +23,29 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
     }
   };
 
+  const roles = [
+    'MERN Stack Developer',
+    'React Developer',
+    'Frontend Developer',
+    'Full Stack Developer',
+    'Web Application Developer',
+  ];
+
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden py-16 pt-24">
+    <section
+      id="hero"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden py-16 pt-24"
+    >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <motion.div
@@ -31,28 +61,65 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
               transition={{ delay: 0.2 }}
             >
               <div className="w-2 h-2 rounded-full bg-primary-400 animate-pulse" />
-              <span className="text-primary-400 font-mono text-sm">Available for opportunities</span>
+              <span className="text-primary-400 font-mono text-sm">
+                Available for opportunities
+              </span>
             </motion.div>
 
             <motion.h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-3 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              <span className="text-white">Primal</span>
-              <br />
-              <span className="gradient-text">Melvita Dsouza</span>
-            </motion.h1>
+  className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-3 leading-tight"
+>
+  <motion.span
+    className="block text-white"
+    initial={{ x: -100, opacity: 0 }}
+    animate={{ x: 0, opacity: 1 }}
+    transition={{ duration: 0.8 }}
+  >
+    Hi, I'm
+  </motion.span>
 
-            <motion.p
-              className="text-gray-300 text-lg sm:text-xl font-medium mb-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35 }}
-            >
-              MERN Stack Developer
-            </motion.p>
+  <motion.span
+  className="block gradient-text mt-2"
+  initial={{ x: -150, opacity: 0 }}
+  animate={{
+    x: 0,
+    opacity: 1,
+    scale: [1, 1.03, 1],
+  }}
+  transition={{
+    x: { duration: 1.2 },
+    opacity: { duration: 1.2 },
+    scale: {
+      duration: 2,
+      repeat: Infinity,
+      ease: "easeInOut",
+    },
+  }}
+>
+  Primal Melvita Dsouza
+</motion.span>
+</motion.h1>
+
+            {/* Animated Role */}
+            {/* Animated Role */}
+<motion.div
+  key={roleIndex}
+  className="h-10 mb-3"
+  initial={{ x: -80, opacity: 0 }}
+  animate={{ x: 0, opacity: 1 }}
+  transition={{
+    duration: 0.8,
+    ease: "easeOut"
+  }}
+>
+  <span className="text-cyan-400 text-xl sm:text-2xl font-semibold font-mono">
+    {roles[roleIndex]}
+  </span>
+
+  <span className="animate-pulse text-primary-400 ml-1">
+    |
+  </span>
+</motion.div>
 
             <motion.p
               className="text-gray-500 text-base mb-6 max-w-lg mx-auto lg:mx-0"
@@ -60,7 +127,8 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              Building modern web applications with React.js, Node.js, Express.js & MongoDB
+              Building modern web applications with React.js, Node.js,
+              Express.js & MongoDB
             </motion.p>
 
             <motion.div
@@ -70,18 +138,29 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
               transition={{ delay: 0.45 }}
             >
               {[
-                { company: 'Zephyr Technologies', role: 'Full Stack Developer' },
-                { company: 'Codelab System', role: 'MERN Stack Intern' },
+                {
+                  company: 'Zephyr Technologies',
+                  role: 'Full Stack Developer',
+                },
+                {
+                  company: 'Codelab System',
+                  role: 'MERN Stack Intern',
+                },
               ].map((exp) => (
                 <div
                   key={exp.company}
                   className="flex items-center gap-3 px-4 py-2 rounded-xl bg-white/[0.03] border border-white/10"
                 >
                   <Briefcase className="w-4 h-4 text-primary-400 flex-shrink-0" />
+
                   <span className="text-gray-300 text-sm">
-                    <span className="text-white font-medium">{exp.company}</span>
+                    <span className="text-white font-medium">
+                      {exp.company}
+                    </span>
                     <span className="text-gray-500"> — </span>
-                    <span className="text-primary-300">{exp.role}</span>
+                    <span className="text-primary-300">
+                      {exp.role}
+                    </span>
                   </span>
                 </div>
               ))}
@@ -100,6 +179,7 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
                 <ExternalLink className="w-4 h-4" />
                 View Projects
               </button>
+
               <a
                 href="#"
                 className="neon-button-outline flex items-center gap-2 text-white"
@@ -108,6 +188,7 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
                 <Download className="w-4 h-4" />
                 Resume
               </a>
+
               <button
                 onClick={() => scrollToSection('contact')}
                 className="neon-button-outline flex items-center gap-2 text-white"
@@ -123,16 +204,31 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
             >
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
-                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary-500/15 hover:border-primary-500/40 transition-all duration-300">
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary-500/15 hover:border-primary-500/40 transition-all duration-300"
+              >
                 <Github className="w-5 h-5 text-gray-400 hover:text-primary-400" />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-cyan-500/15 hover:border-cyan-500/40 transition-all duration-300">
+
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-cyan-500/15 hover:border-cyan-500/40 transition-all duration-300"
+              >
                 <Linkedin className="w-5 h-5 text-gray-400 hover:text-cyan-400" />
               </a>
-              <a href="mailto:primald39@gmail.com" aria-label="Email"
-                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary-500/15 hover:border-primary-500/40 transition-all duration-300">
+
+              <a
+                href="mailto:primald39@gmail.com"
+                aria-label="Email"
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary-500/15 hover:border-primary-500/40 transition-all duration-300"
+              >
                 <Mail className="w-5 h-5 text-gray-400 hover:text-primary-400" />
               </a>
             </motion.div>
