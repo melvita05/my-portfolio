@@ -78,22 +78,30 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
     Hi, I'm
   </motion.span>
 
-  <motion.span
+<motion.span
   className="block gradient-text mt-2"
-  initial={{ x: -150, opacity: 0 }}
+  initial={{ opacity: 0, y: 50 }}
   animate={{
-    x: 0,
     opacity: 1,
+    y: [0, -10, 0],
     scale: [1, 1.03, 1],
   }}
   transition={{
-    x: { duration: 1.2 },
-    opacity: { duration: 1.2 },
-    scale: {
-      duration: 2,
+    opacity: { duration: 1 },
+    y: {
+      duration: 3,
       repeat: Infinity,
       ease: "easeInOut",
     },
+    scale: {
+      duration: 3,
+      repeat: Infinity,
+      ease: "easeInOut",
+    },
+  }}
+  style={{
+    textShadow:
+      "0 0 20px rgba(34,211,238,0.8), 0 0 40px rgba(34,211,238,0.6)",
   }}
 >
   Primal Melvita Dsouza

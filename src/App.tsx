@@ -6,6 +6,7 @@ import Navigation from './components/ui/Navigation';
 import Footer from './components/sections/Footer';
 import DeveloperActivityWidget from './components/ui/DeveloperActivityWidget';
 
+
 const DynamicBackground = lazy(() => import('./components/background/DynamicBackground'));
 const FloatingParticles = lazy(() => import('./components/background/FloatingParticles'));
 const HeroSection = lazy(() => import('./components/sections/HeroSection'));
@@ -39,10 +40,13 @@ function App() {
   };
 
   return (
-    <div className="relative bg-dark-900 text-white overflow-x-hidden">
-      <Suspense fallback={<SectionLoader />}>
-        <DynamicBackground variant={getBackgroundVariant()} />
-      </Suspense>
+  <div className="relative bg-dark-900 text-white overflow-x-hidden">
+
+    
+
+    <Suspense fallback={<SectionLoader />}>
+      <DynamicBackground variant={getBackgroundVariant()} />
+    </Suspense>
 
       <Suspense fallback={null}>
         <FloatingParticles />

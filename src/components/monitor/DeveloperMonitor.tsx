@@ -554,8 +554,7 @@ export default function DeveloperMonitor({ section }: MonitorContentProps) {
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 via-cyan-500/20 to-primary-500/20 blur-xl rounded-3xl" />
 
-        <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl p-3 sm:p-4 shadow-2xl">
-          <div className="flex items-center gap-1.5 sm:gap-2 mb-3">
+<div className="relative bg-black/90 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-3 sm:p-4 shadow-[0_0_50px_rgba(0,255,255,0.25)]">          <div className="flex items-center gap-1.5 sm:gap-2 mb-3">
             <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
             <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
             <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
@@ -566,31 +565,65 @@ export default function DeveloperMonitor({ section }: MonitorContentProps) {
             </div>
           </div>
 
-          <div className="monitor-screen h-52 sm:h-64 md:h-80 p-3 sm:p-4 overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`${section}-${phase}`}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.25 }}
-                className="h-full"
-              >
-                {renderContent()}
-              </motion.div>
-            </AnimatePresence>
-          </div>
+          <div className="relative monitor-screen h-52 sm:h-64 md:h-80 p-3 sm:p-4 overflow-hidden bg-black">
 
-          <div className="flex items-center gap-2 mt-2 px-1">
-            <Code2 className="w-3 h-3 text-primary-500" />
-            <div className="flex gap-1">
-              {['hero', 'skills', 'experience', 'projects', 'contact'].map((s) => (
-                <div key={s} className={`w-1.5 h-1.5 rounded-full transition-colors ${section === s ? 'bg-primary-500' : 'bg-gray-600'}`} />
-              ))}
-            </div>
-            <Terminal className="w-3 h-3 text-green-500 ml-auto" />
-          </div>
-        </div>
+  {/* Animated Grid */}
+  <div
+    className="absolute inset-0 opacity-20"
+    style={{
+      backgroundImage: `
+        linear-gradient(rgba(0,255,200,0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,200,0.15) 1px, transparent 1px)
+      `,
+      backgroundSize: "30px 30px",
+    }}
+  />
+
+  {/* Scanning Line */}
+  <motion.div
+    className="absolute left-0 right-0 h-[2px] bg-cyan-400 shadow-[0_0_20px_#00ffff]"
+    animate={{
+      top: ["0%", "100%"],
+    }}
+    transition={{
+      duration: 4,
+      repeat: Infinity,
+      ease: "linear",
+    }}
+  />
+
+  {/* Floating Glow */}
+  <motion.div
+    className="absolute inset-0"
+    animate={{
+      opacity: [0.3, 0.7, 0.3],
+    }}
+    transition={{
+      duration: 3,
+      repeat: Infinity,
+    }}
+    style={{
+      background:
+        "radial-gradient(circle at center, rgba(0,255,255,0.12), transparent 70%)",
+    }}
+  />
+
+  {/* Screen Content */}
+  <AnimatePresence mode="wait">
+    <motion.div
+      key={`${section}-${phase}`}
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -15 }}
+      transition={{ duration: 0.25 }}
+      className="h-full relative z-10"
+    >
+      {renderContent()}
+    </motion.div>
+  </AnimatePresence>
+
+</div>
+</div>
 
         <div className="absolute -bottom-2 sm:-bottom-3 left-1/2 transform -translate-x-1/2 w-32 sm:w-40 h-3 sm:h-4 bg-gradient-to-b from-gray-700 to-gray-800 rounded-b-lg" />
         <div className="absolute -bottom-6 sm:-bottom-8 left-1/2 transform -translate-x-1/2 w-48 sm:w-60 h-2.5 sm:h-3 bg-gray-900 rounded-xl" />
