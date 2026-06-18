@@ -10,8 +10,8 @@ function MeshWave() {
     () => ({
       uTime: { value: 0 },
       uColor1: { value: new THREE.Color('#050816') },
-      uColor2: { value: new THREE.Color('#00D9A5') },
-      uColor3: { value: new THREE.Color('#38BDF8') },
+      uColor2: { value: new THREE.Color('#00F5A0') },
+      uColor3: { value: new THREE.Color('#7C3AED') },
     }),
     []
   );
@@ -98,7 +98,7 @@ function Particles() {
       </bufferGeometry>
       <pointsMaterial
         size={0.04}
-        color="#00D9A5"
+color="#00F5A0"
         transparent
         opacity={0.6}
         sizeAttenuation
@@ -128,7 +128,7 @@ function FloatingOrbs() {
       </mesh>
       <mesh position={[3, 2, -3]}>
         <sphereGeometry args={[0.15, 32, 32]} />
-        <meshBasicMaterial color="#38BDF8" transparent opacity={0.4} />
+        <meshBasicMaterial color="#7C3AED" transparent opacity={0.4} />
       </mesh>
       <mesh position={[0, 3, -4]}>
         <sphereGeometry args={[0.12, 32, 32]} />
@@ -144,7 +144,39 @@ function FloatingOrbs() {
 
 export default function AnimatedBackground() {
   return (
+    
     <div className="fixed inset-0 -z-10">
+      {/* Floating Developer Symbols */}
+<div className="absolute inset-0 overflow-hidden pointer-events-none">
+  <div className="absolute top-20 left-20 text-cyan-400/10 text-8xl font-bold animate-pulse">
+    {'</>'}
+  </div>
+
+  <div className="absolute top-40 right-32 text-emerald-400/10 text-7xl font-bold animate-pulse">
+    {'{ }'}
+  </div>
+
+  <div className="absolute bottom-32 left-40 text-cyan-400/10 text-6xl font-bold animate-pulse">
+    {'()'}
+  </div>
+
+  <div className="absolute bottom-20 right-20 text-emerald-400/10 text-7xl font-bold animate-pulse">
+    {'=>'}
+  </div>
+
+  <div className="absolute top-1/2 left-1/4 text-purple-400/10 text-7xl font-bold animate-pulse">
+    {'const'}
+  </div>
+
+  <div className="absolute top-1/3 right-1/4 text-cyan-400/10 text-6xl font-bold animate-pulse">
+    {'async'}
+  </div>
+</div>
+
+{/* Center Glow */}
+<div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+  <div className="w-[600px] h-[600px] rounded-full bg-cyan-500/10 blur-[180px]" />
+</div>
       <Canvas
         camera={{ position: [0, 0, 5], fov: 60 }}
         dpr={[1, 2]}
