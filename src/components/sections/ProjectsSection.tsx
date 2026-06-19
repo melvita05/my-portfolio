@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
+import Tilt from 'react-parallax-tilt';
 
 const projects = [
   {
@@ -9,6 +10,8 @@ const projects = [
     subtitle: 'Organ donation management system connecting donors with hospitals',
     tech: ['MongoDB', 'Express.js', 'React.js', 'Node.js'],
     image: 'https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=600',
+    Github: 'https://github.com/yourusername/organease',
+    live: 'https://organease.vercel.app',
     color: 'primary',
   },
   {
@@ -16,6 +19,8 @@ const projects = [
     subtitle: 'Event listing & registration platform with admin dashboard',
     tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
     image: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=600',
+    Github: 'https://github.com/yourusername/event-management',
+    live: 'https://eventmanagement.vercel.app',
     color: 'cyan',
   },
 ];
@@ -89,16 +94,29 @@ export default function ProjectsSection() {
             const offsetY = (mousePos.y - 0.5) * 8;
 
             return (
-              <motion.div
-                key={project.title}
-                className="group relative perspective-1000"
-                initial={{ opacity: 0, y: 60, rotateX: -5 }}
-                animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4 + projectIndex * 0.2 }}
-                style={{
-                  transform: `translateX(${offsetX}px) translateY(${offsetY}px)`,
-                }}
-              >
+              <Tilt
+  glareEnable={true}
+  glareMaxOpacity={0.15}
+  scale={1.03}
+  tiltMaxAngleX={10}
+  tiltMaxAngleY={10}
+>
+  <motion.div
+  key={project.title}
+  className="group relative perspective-1000"
+  initial={{ opacity: 0, y: 60, rotateX: -5 }}
+  animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+  whileHover={{
+    rotateY: 8,
+    rotateX: -5,
+    scale: 1.02,
+  }}
+  transition={{ duration: 0.6, delay: 0.4 + projectIndex * 0.2 }}
+  style={{
+    transform: `translateX(${offsetX}px) translateY(${offsetY}px)`,
+    transformStyle: 'preserve-3d',
+  }}
+>
                 {/* Floating animation container */}
                 <motion.div
                   className="relative"
@@ -209,6 +227,7 @@ export default function ProjectsSection() {
                   </div>
                 </motion.div>
               </motion.div>
+              </Tilt>
             );
           })}
         </div>

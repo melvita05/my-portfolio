@@ -22,12 +22,14 @@ const CODE_LINES = [
 ];
 
 const TERMINAL_LINES = [
-  { text: '$ npm run portfolio', type: 'command' },
-  { text: 'Loading...', type: 'output' },
-  { text: 'Compiling...', type: 'output' },
-  { text: 'Building Components...', type: 'output' },
-  { text: 'Loading Projects...', type: 'output' },
-  { text: 'Success ✓', type: 'success' },
+  { text: '$ git commit -m "Added Portfolio"', type: 'command' },
+  { text: '✓ Commit successful', type: 'success' },
+
+  { text: '$ npm run build', type: 'command' },
+  { text: '✓ Build completed', type: 'success' },
+
+  { text: '$ npm run deploy', type: 'command' },
+  { text: '✓ Portfolio deployed', type: 'success' },
 ];
 
 interface MonitorContentProps {
@@ -550,8 +552,8 @@ export default function DeveloperMonitor({ section }: MonitorContentProps) {
   };
 
   return (
-    <div className="relative w-full max-w-md mx-auto">
-      <div className="relative">
+<div className="relative w-full max-w-xl mx-auto">
+        <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 via-cyan-500/20 to-primary-500/20 blur-xl rounded-3xl" />
 
 <div className="relative bg-black/90 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-3 sm:p-4 shadow-[0_0_50px_rgba(0,255,255,0.25)]">          <div className="flex items-center gap-1.5 sm:gap-2 mb-3">
@@ -565,7 +567,7 @@ export default function DeveloperMonitor({ section }: MonitorContentProps) {
             </div>
           </div>
 
-          <div className="relative monitor-screen h-52 sm:h-64 md:h-80 p-3 sm:p-4 overflow-hidden bg-black">
+         <div className="relative monitor-screen h-72 sm:h-96 md:h-[520px] p-3 sm:p-4 overflow-hidden bg-black">
 
   {/* Animated Grid */}
   <div

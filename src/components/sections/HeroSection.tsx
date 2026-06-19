@@ -44,7 +44,7 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden py-16 pt-24"
+      className="min-h-screen flex items-center relative overflow-hidden pt-32 pb-20"
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -67,7 +67,7 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
             </motion.div>
 
             <motion.h1
-  className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-3 leading-tight"
+  className="text-5xl sm:text-6xl lg:text-8xl font-black mb-3 leading-tight"
 >
   <motion.span
     className="block text-white"
@@ -79,7 +79,7 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
   </motion.span>
 
 <motion.span
-  className="block gradient-text mt-2"
+className="block gradient-text mt-2 drop-shadow-[0_0_40px_rgba(34,211,238,0.8)]"
   initial={{ opacity: 0, y: 50 }}
   animate={{
     opacity: 1,
@@ -104,7 +104,7 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
       "0 0 20px rgba(34,211,238,0.8), 0 0 40px rgba(34,211,238,0.6)",
   }}
 >
-  Primal Melvita Dsouza
+  Primal Dsouza
 </motion.span>
 </motion.h1>
 
@@ -120,7 +120,7 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
     ease: "easeOut"
   }}
 >
-  <span className="text-cyan-400 text-xl sm:text-2xl font-semibold font-mono">
+  <span className="text-cyan-400 text-xl sm:text-2xl font-semibold font-mono tracking-widest">
     {roles[roleIndex]}
   </span>
 
@@ -135,45 +135,31 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              Building modern web applications with React.js, Node.js,
-              Express.js & MongoDB
+              Crafting fast, scalable, and user-focused web applications
+using React, Node.js, Express, MongoDB, and modern UI technologies.
             </motion.p>
 
             <motion.div
-              className="flex flex-col gap-2 mb-6 max-w-md mx-auto lg:mx-0"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45 }}
-            >
-              {[
-                {
-                  company: 'Zephyr Technologies',
-                  role: 'Full Stack Developer',
-                },
-                {
-                  company: 'Codelab System',
-                  role: 'MERN Stack Intern',
-                },
-              ].map((exp) => (
-                <div
-                  key={exp.company}
-                  className="flex items-center gap-3 px-4 py-2 rounded-xl bg-white/[0.03] border border-white/10"
-                >
-                  <Briefcase className="w-4 h-4 text-primary-400 flex-shrink-0" />
-
-                  <span className="text-gray-300 text-sm">
-                    <span className="text-white font-medium">
-                      {exp.company}
-                    </span>
-                    <span className="text-gray-500"> — </span>
-                    <span className="text-primary-300">
-                      {exp.role}
-                    </span>
-                  </span>
-                </div>
-              ))}
-            </motion.div>
-
+ className="flex flex-wrap gap-2 mb-6"
+>
+  {[
+    "React",
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "TypeScript"
+  ].map((tech) => (
+    <motion.span
+  key={tech}
+  whileHover={{
+    scale: 1.1,
+    y: -4,
+  }}
+  className="px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/30 text-primary-300 text-sm cursor-pointer"
+>
+  </motion.span>
+  ))}
+</motion.div>
             <motion.div
               className="flex flex-wrap gap-3 justify-center lg:justify-start mb-6"
               initial={{ opacity: 0, y: 20 }}
@@ -182,15 +168,14 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
             >
               <button
                 onClick={() => scrollToSection('projects')}
-                className="neon-button flex items-center gap-2 text-white"
-              >
+className="neon-button flex items-center gap-2 text-white hover:scale-105 transition-all duration-300"              >
                 <ExternalLink className="w-4 h-4" />
                 View Projects
               </button>
 
               <a
                 href="#"
-                className="neon-button-outline flex items-center gap-2 text-white"
+className="neon-button flex items-center gap-2 text-white hover:scale-105 transition-all duration-300"
                 onClick={(e) => e.preventDefault()}
               >
                 <Download className="w-4 h-4" />
@@ -248,7 +233,9 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <DeveloperMonitor section={currentSection} />
+<div className="scale-100 lg:scale-115">
+    <DeveloperMonitor section={currentSection} />
+</div>
           </motion.div>
         </div>
       </div>

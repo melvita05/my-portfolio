@@ -1,5 +1,7 @@
 import { useRef, useMemo, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
+//import { motion, useMotionValue } from 'framer-motion';
+import { motion } from 'framer-motion';
 import * as THREE from 'three';
 
 // Layer 1: Ocean waves mesh
@@ -234,8 +236,53 @@ export default function DynamicBackground({ variant = 'default' }: DynamicBackgr
   const particleOpacity = variant === 'contact' ? 0.3 : 0.5;
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
-      <Canvas
+<div className="fixed inset-0 -z-10 overflow-hidden">
+  <motion.div
+  className="absolute top-20 left-20 text-cyan-400/10 text-8xl font-bold"
+  animate={{
+    y: [0, -20, 0],
+  }}
+  transition={{
+    duration: 8,
+    repeat: Infinity,
+  }}
+>
+  React
+</motion.div>
+
+<motion.div
+  className="absolute bottom-20 right-20 text-emerald-400/10 text-8xl font-bold"
+  animate={{
+    y: [0, 20, 0],
+  }}
+  transition={{
+    duration: 10,
+    repeat: Infinity,
+  }}
+>
+  Node.js
+</motion.div>
+
+<motion.div
+  className="absolute top-1/2 right-40 text-purple-400/10 text-7xl font-bold"
+  animate={{
+    rotate: [-2, 2, -2],
+  }}
+  transition={{
+    duration: 8,
+    repeat: Infinity,
+  }}
+>
+  MongoDB
+</motion.div>
+  <div
+    className="absolute inset-0 pointer-events-none"
+    style={{
+      background:
+        'radial-gradient(circle at 50% 50%, rgba(0,217,165,0.12), transparent 40%)',
+      filter: 'blur(80px)',
+    }}
+  />      <Canvas
         camera={{ position: [0, 0, 6], fov: 60 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true }}
@@ -251,6 +298,9 @@ export default function DynamicBackground({ variant = 'default' }: DynamicBackgr
       </Canvas>
 
       {/* Layer 5: Parallax gradient overlays */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+  <div className="w-[900px] h-[900px] rounded-full bg-cyan-500/10 blur-[250px]" />
+</div>
       <div className="absolute inset-0 bg-gradient-to-b from-dark-900/30 via-transparent to-dark-900/50 pointer-events-none" />
 
       {/* Section-specific overlays */}

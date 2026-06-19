@@ -112,10 +112,14 @@ export default function SkillsSection() {
             WHAT I WORK WITH
           </motion.p>
           <motion.h2
-            className="text-4xl sm:text-5xl font-bold"
+className="text-5xl sm:text-6xl font-extrabold"
             initial={{ opacity: 0, y: 20 }}
             animate={skillsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3 }}
+            style={{
+  textShadow:
+    "0 0 25px rgba(34,211,238,0.4)"
+}}
           >
             <span className="text-white">My </span>
             <span className="gradient-text">Skills</span>
@@ -124,7 +128,7 @@ export default function SkillsSection() {
 
         {/* Tech Constellation - Interactive visualization */}
         <motion.div
-          className="mb-16"
+          className="mb-8"
           initial={{ opacity: 0 }}
           animate={skillsInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.4 }}
@@ -137,11 +141,19 @@ export default function SkillsSection() {
           {skillCategories.map((category, catIndex) => (
             <motion.div
               key={category.title}
-              className={`glass-card ${colorMap[category.color].border} transition-all duration-300`}
+className={`glass-card ${colorMap[category.color].border}
+transition-all duration-500
+backdrop-blur-xl
+shadow-[0_0_30px_rgba(0,255,255,0.08)]`}
               initial={{ opacity: 0, y: 50, x: catIndex % 2 === 0 ? -30 : 30 }}
               animate={skillsInView ? { opacity: 1, y: 0, x: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.5 + catIndex * 0.1 }}
-              whileHover={{ y: -8, scale: 1.02 }}
+              whileHover={{
+  y: -12,
+  scale: 1.05,
+  rotateY: 8,
+  rotateX: -4,
+}}
             >
               <div className={`w-12 h-12 rounded-xl ${colorMap[category.color].bg} flex items-center justify-center mb-4`}>
                 <category.icon className={`w-6 h-6 ${colorMap[category.color].text}`} />
@@ -159,8 +171,13 @@ export default function SkillsSection() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={skillsInView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.25, delay: 0.6 + catIndex * 0.1 + si * 0.05 }}
-                    whileHover={{ scale: 1.1 }}
-                  >
+whileHover={{
+  scale: 1.15,
+  y: -4,
+}}         
+style={{
+  boxShadow: "0 0 15px rgba(34,211,238,0.15)",
+}}         >
                     {skill}
                   </motion.span>
                 ))}
@@ -206,8 +223,10 @@ export default function SkillsSection() {
               initial={{ opacity: 0, y: 40 }}
               animate={certsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-              whileHover={{ y: -6, scale: 1.02 }}
-            >
+whileHover={{
+  y: -12,
+  scale: 1.05,
+}}            >
               <div>
                 <div className={`w-11 h-11 rounded-xl ${colorMap[cert.color].bg} flex items-center justify-center mb-4`}>
                   <CheckCircle className={`w-5 h-5 ${colorMap[cert.color].check}`} />

@@ -148,29 +148,29 @@ export default function AnimatedBackground() {
     <div className="fixed inset-0 -z-10">
       {/* Floating Developer Symbols */}
 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-  <div className="absolute top-20 left-20 text-cyan-400/10 text-8xl font-bold animate-pulse">
-    {'</>'}
-  </div>
+  <div className="absolute top-20 left-20 text-cyan-400/10 text-7xl font-bold animate-pulse">
+  React
+</div>
 
-  <div className="absolute top-40 right-32 text-emerald-400/10 text-7xl font-bold animate-pulse">
-    {'{ }'}
-  </div>
+<div className="absolute top-40 right-32 text-emerald-400/10 text-7xl font-bold animate-pulse">
+  Node.js
+</div>
 
-  <div className="absolute bottom-32 left-40 text-cyan-400/10 text-6xl font-bold animate-pulse">
-    {'()'}
-  </div>
+<div className="absolute bottom-32 left-40 text-cyan-400/10 text-6xl font-bold animate-pulse">
+  MongoDB
+</div>
 
-  <div className="absolute bottom-20 right-20 text-emerald-400/10 text-7xl font-bold animate-pulse">
-    {'=>'}
-  </div>
+<div className="absolute bottom-20 right-20 text-emerald-400/10 text-7xl font-bold animate-pulse">
+  Express
+</div>
 
-  <div className="absolute top-1/2 left-1/4 text-purple-400/10 text-7xl font-bold animate-pulse">
-    {'const'}
-  </div>
+<div className="absolute top-1/2 left-1/4 text-purple-400/10 text-6xl font-bold animate-pulse">
+  JavaScript
+</div>
 
-  <div className="absolute top-1/3 right-1/4 text-cyan-400/10 text-6xl font-bold animate-pulse">
-    {'async'}
-  </div>
+<div className="absolute top-1/3 right-1/4 text-cyan-400/10 text-6xl font-bold animate-pulse">
+  TypeScript
+</div>
 </div>
 
 {/* Center Glow */}
