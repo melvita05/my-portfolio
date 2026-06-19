@@ -223,7 +223,7 @@ function ProfileDisplay() {
 
         {/* Profile image - 60% larger (was w-20 h-20, now ~w-32 h-32) */}
         <motion.div
-          className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden"
+          className="relative w-40 h-40 sm:w-52 sm:h-52 rounded-full overflow-hidden"
           style={{
             boxShadow: '0 0 40px rgba(0,217,165,0.4), 0 0 80px rgba(56,189,248,0.2), inset 0 0 20px rgba(0,0,0,0.3)',
           }}
@@ -242,7 +242,7 @@ function ProfileDisplay() {
           <motion.img
             src="https://images.pexels.com/photos/3783525/pexels-photo-3783525.jpeg?auto=compress&cs=tinysrgb&w=400"
             alt="Primal Melvita Dsouza"
-            className="w-full h-full object-cover"
+         className="w-full h-full object-cover"
             initial={{ scale: 1.1 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.8 }}
@@ -567,9 +567,7 @@ export default function DeveloperMonitor({ section }: MonitorContentProps) {
             </div>
           </div>
 
-         <div className="relative monitor-screen h-72 sm:h-96 md:h-[520px] p-3 sm:p-4 overflow-hidden bg-black">
-
-  {/* Animated Grid */}
+<div className="relative monitor-screen h-72 sm:h-80 md:h-[380px] p-3 sm:p-4 overflow-hidden bg-black">  {/* Animated Grid */}
   <div
     className="absolute inset-0 opacity-20"
     style={{

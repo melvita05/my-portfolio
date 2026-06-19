@@ -44,7 +44,7 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center relative overflow-hidden pt-32 pb-20"
+     className="min-h-screen flex items-center justify-center relative overflow-hidden pt-32"
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -228,13 +228,13 @@ className="neon-button flex items-center gap-2 text-white hover:scale-105 transi
           </motion.div>
 
           <motion.div
-            className="order-1 lg:order-2"
+className="order-1 lg:order-2 mb-10 lg:mb-0"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-<div className="scale-100 lg:scale-115">
-    <DeveloperMonitor section={currentSection} />
+<div className="scale-95 lg:scale-100">
+  <DeveloperMonitor section={currentSection} />
 </div>
           </motion.div>
         </div>
