@@ -1,6 +1,7 @@
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { motion } from 'framer-motion';
 
 function MeshWave() {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -10,8 +11,8 @@ function MeshWave() {
     () => ({
       uTime: { value: 0 },
       uColor1: { value: new THREE.Color('#050816') },
-      uColor2: { value: new THREE.Color('#00F5A0') },
-      uColor3: { value: new THREE.Color('#7C3AED') },
+      uColor2: { value: new THREE.Color('#8B5CF6') },
+      uColor3: { value: new THREE.Color('#06B6D4') },
     }),
     []
   );
@@ -98,7 +99,7 @@ function Particles() {
       </bufferGeometry>
       <pointsMaterial
         size={0.04}
-color="#00F5A0"
+color="#8B5CF6"
         transparent
         opacity={0.6}
         sizeAttenuation
@@ -121,24 +122,43 @@ function FloatingOrbs() {
   });
 
   return (
-    <group ref={groupRef}>
-      <mesh position={[-3, 1, -5]}>
-        <sphereGeometry args={[0.25, 32, 32]} />
-        <meshBasicMaterial color="#00D9A5" transparent opacity={0.5} />
-      </mesh>
-      <mesh position={[3, 2, -3]}>
-        <sphereGeometry args={[0.15, 32, 32]} />
-        <meshBasicMaterial color="#7C3AED" transparent opacity={0.4} />
-      </mesh>
-      <mesh position={[0, 3, -4]}>
-        <sphereGeometry args={[0.12, 32, 32]} />
-        <meshBasicMaterial color="#2DD4BF" transparent opacity={0.6} />
-      </mesh>
-      <mesh position={[-2, 0.5, -2]}>
-        <sphereGeometry args={[0.08, 32, 32]} />
-        <meshBasicMaterial color="#00D9A5" transparent opacity={0.3} />
-      </mesh>
-    </group>
+   <group ref={groupRef}>
+  <mesh position={[-3, 1, -5]}>
+    <sphereGeometry args={[0.25, 32, 32]} />
+    <meshStandardMaterial
+      color="#8B5CF6"
+      transparent
+      opacity={0.5}
+    />
+  </mesh>
+
+  <mesh position={[3, 2, -3]}>
+    <sphereGeometry args={[0.15, 32, 32]} />
+    <meshStandardMaterial
+      color="#06B6D4"
+      transparent
+      opacity={0.4}
+    />
+  </mesh>
+
+  <mesh position={[0, 3, -4]}>
+    <sphereGeometry args={[0.12, 32, 32]} />
+    <meshStandardMaterial
+      color="#F59E0B"
+      transparent
+      opacity={0.6}
+    />
+  </mesh>
+
+  <mesh position={[-2, 0.5, -2]}>
+    <sphereGeometry args={[0.08, 32, 32]} />
+   <meshStandardMaterial
+      color="#8B5CF6"
+      transparent
+      opacity={0.3}
+    />
+  </mesh>
+</group>
   );
 }
 
@@ -146,6 +166,65 @@ export default function AnimatedBackground() {
   return (
     
     <div className="fixed inset-0 -z-10">
+      {/* Floating Gradient Orb 1 */}
+<motion.div
+  className="absolute w-96 h-96 rounded-full blur-3xl"
+  style={{
+    background:
+      "radial-gradient(circle, rgba(139,92,246,0.25), transparent)",
+    top: "10%",
+    left: "5%",
+  }}
+  animate={{
+    x: [0, 200, 0],
+    y: [0, -100, 0],
+  }}
+  transition={{
+    duration: 20,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+/>
+
+{/* Floating Gradient Orb 2 */}
+<motion.div
+  className="absolute w-[500px] h-[500px] rounded-full blur-3xl"
+  style={{
+    background:
+      "radial-gradient(circle, rgba(6,182,212,0.2), transparent)",
+    bottom: "10%",
+    right: "5%",
+  }}
+  animate={{
+    x: [0, -150, 0],
+    y: [0, 100, 0],
+  }}
+  transition={{
+    duration: 25,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+/>
+
+{/* Floating Gradient Orb 3 */}
+<motion.div
+  className="absolute w-80 h-80 rounded-full blur-3xl"
+  style={{
+    background:
+      "radial-gradient(circle, rgba(245,158,11,0.18), transparent)",
+    top: "50%",
+    left: "50%",
+  }}
+  animate={{
+    scale: [1, 1.2, 1],
+    rotate: [0, 180, 360],
+  }}
+  transition={{
+    duration: 30,
+    repeat: Infinity,
+    ease: "linear",
+  }}
+/>
       {/* Floating Developer Symbols */}
 <div className="absolute inset-0 overflow-hidden pointer-events-none">
   <div className="absolute top-20 left-20 text-cyan-400/10 text-7xl font-bold animate-pulse">
@@ -175,20 +254,37 @@ export default function AnimatedBackground() {
 
 {/* Center Glow */}
 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-  <div className="w-[600px] h-[600px] rounded-full bg-cyan-500/10 blur-[180px]" />
+  <div className="w-[700px] h-[700px] rounded-full bg-violet-500/10 blur-[220px]" />
 </div>
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 60 }}
-        dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true }}
-      >
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} color="#00D9A5" />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} color="#38BDF8" />
-        <MeshWave />
-        <Particles />
-        <FloatingOrbs />
-      </Canvas>
+  camera={{ position: [0, 0, 5], fov: 60 }}
+  dpr={[1, 2]}
+  gl={{ antialias: true, alpha: true }}
+>
+  <ambientLight intensity={1} />
+
+  <pointLight
+    position={[0, 0, 5]}
+    intensity={2}
+    color="#8B5CF6"
+  />
+
+  <pointLight
+    position={[10, 10, 10]}
+    intensity={1}
+    color="#06B6D4"
+  />
+
+  <pointLight
+    position={[-10, -10, -10]}
+    intensity={0.8}
+    color="#F59E0B"
+  />
+
+  <MeshWave />
+  <Particles />
+  <FloatingOrbs />
+</Canvas>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dark-900/30 to-dark-900 pointer-events-none" />
     </div>
   );

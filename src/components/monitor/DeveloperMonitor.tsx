@@ -554,9 +554,9 @@ export default function DeveloperMonitor({ section }: MonitorContentProps) {
   return (
 <div className="relative w-full max-w-xl mx-auto">
         <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 via-cyan-500/20 to-primary-500/20 blur-xl rounded-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 via-cyan-500/20 to-yellow-500/20 blur-xl rounded-3xl" />
 
-<div className="relative bg-black/90 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-3 sm:p-4 shadow-[0_0_50px_rgba(0,255,255,0.25)]">          <div className="flex items-center gap-1.5 sm:gap-2 mb-3">
+<div className="relative bg-black/90 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-3 sm:p-4 shadow-[0_0_60px_rgba(139,92,246,0.35)]">          <div className="flex items-center gap-1.5 sm:gap-2 mb-3">
             <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
             <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
             <div className="w-2.5 h-2.5 rounded-full bg-green-500" />

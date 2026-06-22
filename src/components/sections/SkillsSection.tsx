@@ -1,36 +1,18 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Globe, Server, Database, Settings, Award, CheckCircle, Building } from 'lucide-react';
+import { Globe, Server, Database, Settings, CheckCircle, Building } from 'lucide-react';
 import TechConstellation from '../skills/TechConstellation';
+import CircularSkills from "../skills/CircularSkill";
 
-const skillCategories = [
-  {
-    title: 'Frontend',
-    icon: Globe,
-    skills: ['HTML', 'CSS', 'JavaScript', 'React.js', 'Bootstrap'],
-    color: 'primary',
-  },
-  {
-    title: 'Backend',
-    icon: Server,
-    skills: ['Node.js', 'Express.js'],
-    color: 'cyan',
-  },
-  {
-    title: 'Database',
-    icon: Database,
-    skills: ['MongoDB'],
-    color: 'accent',
-  },
-  {
-    title: 'Tools',
-    icon: Settings,
-    skills: ['Git', 'GitHub', 'VS Code', 'Postman'],
-    color: 'sky',
-  },
+
+
+// ✅ FIXED: renamed properly
+const circularSkills = [
+  { name: 'React', percent: 85, color: '#22d3ee' },
+  { name: 'Node.js', percent: 80, color: '#38bdf8' },
+  { name: 'MongoDB', percent: 75, color: '#2dd4bf' },
+  { name: 'Express', percent: 78, color: '#60a5fa' },
 ];
-
 const certifications = [
   {
     title: 'Data Analytics Using Power BI',
@@ -53,8 +35,7 @@ const certifications = [
     color: 'accent',
   },
 ];
-
-const colorMap: Record<string, { bg: string; border: string; text: string; tag: string; check: string }> = {
+const colorMap: Record<string, any> = {
   primary: {
     bg: 'bg-primary-500/20',
     border: 'hover:border-primary-500/50',
@@ -85,9 +66,57 @@ const colorMap: Record<string, { bg: string; border: string; text: string; tag: 
   },
 };
 
+const CircularSkill = ({ name, percent, color }: any) => {
+  const radius = 50;
+  const stroke = 8;
+  const normalizedRadius = radius - stroke * 2;
+  const circumference = 2 * Math.PI * normalizedRadius;
+
+  const strokeDashoffset =
+    circumference - (percent / 100) * circumference;
+
+  return (
+    <div className="flex flex-col items-center">
+      <svg height={120} width={120}>
+        {/* background circle */}
+        <circle
+          stroke="#1f2937"
+          fill="transparent"
+          strokeWidth={stroke}
+          r={normalizedRadius}
+          cx={60}
+          cy={60}
+        />
+
+        {/* progress circle */}
+        <circle
+          stroke={color}
+          fill="transparent"
+          strokeWidth={stroke}
+          strokeLinecap="round"
+          strokeDasharray={`${circumference} ${circumference}`}
+          strokeDashoffset={strokeDashoffset}
+          r={normalizedRadius}
+          cx={60}
+          cy={60}
+          style={{
+            transition: 'stroke-dashoffset 1.2s ease-in-out',
+          }}
+        />
+      </svg>
+
+      <div className="text-center -mt-16">
+        <p className="text-white font-semibold">{name}</p>
+        <p className="text-cyan-400">{percent}%</p>
+      </div>
+    </div>
+  );
+};
+
 export default function SkillsSection() {
   const skillsRef = useRef(null);
   const certsRef = useRef(null);
+
   const skillsInView = useInView(skillsRef, { once: true, margin: '-100px' });
   const certsInView = useInView(certsRef, { once: true, margin: '-100px' });
 
@@ -95,153 +124,77 @@ export default function SkillsSection() {
     <section id="skills" className="py-20 min-h-screen">
       <div className="container mx-auto px-4 lg:px-8">
 
-        {/* Skills heading */}
-        <motion.div
-          ref={skillsRef}
-          className="text-center mb-12"
+        {/* HEADER */}
+        <motion.div ref={skillsRef} className="text-center mb-12"
           initial={{ opacity: 0, y: 50 }}
           animate={skillsInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
         >
-          <motion.p
-            className="text-primary-400 font-mono text-sm mb-2"
-            initial={{ opacity: 0 }}
-            animate={skillsInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.2 }}
-          >
+          <p className="text-primary-400 font-mono text-sm mb-2">
             WHAT I WORK WITH
-          </motion.p>
-          <motion.h2
-className="text-5xl sm:text-6xl font-extrabold"
-            initial={{ opacity: 0, y: 20 }}
-            animate={skillsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3 }}
-            style={{
-  textShadow:
-    "0 0 25px rgba(34,211,238,0.4)"
-}}
-          >
+          </p>
+
+          <h2 className="text-5xl sm:text-6xl font-extrabold">
             <span className="text-white">My </span>
             <span className="gradient-text">Skills</span>
-          </motion.h2>
+          </h2>
         </motion.div>
 
-        {/* Tech Constellation - Interactive visualization */}
-        <motion.div
-          className="mb-8"
-          initial={{ opacity: 0 }}
-          animate={skillsInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.4 }}
-        >
-          <TechConstellation isInView={skillsInView} />
-        </motion.div>
+        {/* TECH CONSTELLATION */}
+        <TechConstellation isInView={skillsInView} />
+        {/* CIRCULAR SKILLS SECTION */}
+<div className="grid grid-cols-2 md:grid-cols-4 gap-10 mt-16 mb-20">
+  {circularSkills.map((skill, i) => (
+    <motion.div
+      key={skill.name}
+      initial={{ opacity: 0, scale: 0.5 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: i * 0.1 }}
+    >
+      <CircularSkill {...skill} />
+    </motion.div>
+  ))}
+</div>
 
-        {/* Skill cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto mb-20">
-          {skillCategories.map((category, catIndex) => (
-            <motion.div
-              key={category.title}
-className={`glass-card ${colorMap[category.color].border}
-transition-all duration-500
-backdrop-blur-xl
-shadow-[0_0_30px_rgba(0,255,255,0.08)]`}
-              initial={{ opacity: 0, y: 50, x: catIndex % 2 === 0 ? -30 : 30 }}
-              animate={skillsInView ? { opacity: 1, y: 0, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.5 + catIndex * 0.1 }}
-              whileHover={{
-  y: -12,
-  scale: 1.05,
-  rotateY: 8,
-  rotateX: -4,
-}}
-            >
-              <div className={`w-12 h-12 rounded-xl ${colorMap[category.color].bg} flex items-center justify-center mb-4`}>
-                <category.icon className={`w-6 h-6 ${colorMap[category.color].text}`} />
-              </div>
+        {/* SKILLS */}
+        
 
-              <h3 className={`font-semibold text-sm uppercase tracking-wider mb-4 ${colorMap[category.color].text}`}>
-                {category.title}
-              </h3>
-
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, si) => (
-                  <motion.span
-                    key={skill}
-                    className={`px-3 py-1.5 text-sm rounded-lg border font-mono ${colorMap[category.color].tag}`}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={skillsInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.25, delay: 0.6 + catIndex * 0.1 + si * 0.05 }}
-whileHover={{
-  scale: 1.15,
-  y: -4,
-}}         
-style={{
-  boxShadow: "0 0 15px rgba(34,211,238,0.15)",
-}}         >
-                    {skill}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Certifications sub-section */}
-        <motion.div
-          ref={certsRef}
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 40 }}
-          animate={certsInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.div
-            className="inline-flex items-center gap-3 mb-3"
-            initial={{ opacity: 0 }}
-            animate={certsInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.2 }}
-          >
-            <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary-500/60" />
-            <Award className="w-5 h-5 text-primary-400" />
-            <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary-500/60" />
-          </motion.div>
-          <motion.h3
-            className="text-2xl sm:text-3xl font-bold"
-            initial={{ opacity: 0, y: 16 }}
-            animate={certsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.25 }}
-          >
+        {/* CERTIFICATIONS */}
+        <motion.div ref={certsRef} className="text-center mb-10">
+          <h3 className="text-2xl font-bold">
             <span className="text-white">Certificate </span>
             <span className="gradient-text">Courses</span>
-          </motion.h3>
+          </h3>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
           {certifications.map((cert, i) => (
             <motion.div
               key={cert.title}
-              className={`glass-card ${colorMap[cert.color].border} transition-all duration-300 flex flex-col justify-between`}
+              className={`glass-card ${colorMap[cert.color].border}`}
               initial={{ opacity: 0, y: 40 }}
               animate={certsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-whileHover={{
-  y: -12,
-  scale: 1.05,
-}}            >
-              <div>
-                <div className={`w-11 h-11 rounded-xl ${colorMap[cert.color].bg} flex items-center justify-center mb-4`}>
-                  <CheckCircle className={`w-5 h-5 ${colorMap[cert.color].check}`} />
-                </div>
-                <h4 className="text-white font-semibold text-sm leading-snug mb-3">{cert.title}</h4>
-              </div>
-              <div className={`flex items-center gap-1.5 mt-auto`}>
-                <Building className={`w-3.5 h-3.5 ${colorMap[cert.color].text} flex-shrink-0`} />
-                <span className={`text-xs font-medium ${colorMap[cert.color].text}`}>{cert.issuer}</span>
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ y: -10, scale: 1.05 }}
+            >
+              <CheckCircle className={colorMap[cert.color].check} />
+
+              <h4 className="text-white font-semibold text-sm mt-3">
+                {cert.title}
+              </h4>
+
+              <div className="flex items-center gap-2 mt-3">
+                <Building className={colorMap[cert.color].text} />
+                <span className={`text-xs ${colorMap[cert.color].text}`}>
+                  {cert.issuer}
+                </span>
               </div>
             </motion.div>
           ))}
         </div>
 
       </div>
+      <CircularSkills />
     </section>
   );
 }
