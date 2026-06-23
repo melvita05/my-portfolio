@@ -15,6 +15,7 @@ const ExperienceSection = lazy(() => import('./components/sections/ExperienceSec
 const ProjectsSection = lazy(() => import('./components/sections/ProjectsSection'));
 const ContactSection = lazy(() => import('./components/sections/ContactSection'));
 const AboutSection = lazy(() => import('./components/sections/AboutSection'));
+import SectionWrapper from './components/ui/SectionWrapper';
 
 const SectionLoader = () => (
   <div className="min-h-[50vh] flex items-center justify-center">
@@ -28,7 +29,7 @@ const SectionLoader = () => (
 
 function App() {
   useSmoothScroll();
-  const currentSection = useCurrentSection(0.3);
+  const currentSection = useCurrentSection(0.5);
 
   const getBackgroundVariant = () => {
     switch (currentSection) {
@@ -41,8 +42,7 @@ function App() {
   };
 
   return (
-  <div className="relative bg-dark-900 text-white overflow-x-hidden">
-
+<div className="relative bg-dark-900 text-white overflow-x-hidden scroll-smooth">
     
 
     <Suspense fallback={<SectionLoader />}>
@@ -55,33 +55,35 @@ function App() {
 
       <Navigation currentSection={currentSection} />
 
-      <main className="relative z-10">
-        <Suspense fallback={<SectionLoader />}>
-  <HeroSection currentSection={currentSection} />
-</Suspense>
+     <main className="relative z-10">
 
-<Suspense fallback={<SectionLoader />}>
-  <AboutSection />
-</Suspense>
+  <SectionWrapper>
+    <HeroSection currentSection={currentSection} />
+  </SectionWrapper>
 
-<Suspense fallback={<SectionLoader />}>
-  <SkillsSection />
-</Suspense>
+  <SectionWrapper>
+    <AboutSection />
+  </SectionWrapper>
 
-        <Suspense fallback={<SectionLoader />}>
-          <ExperienceSection />
-        </Suspense>
+  <SectionWrapper>
+    <SkillsSection />
+  </SectionWrapper>
 
-        <Suspense fallback={<SectionLoader />}>
-          <ProjectsSection />
-        </Suspense>
+  <SectionWrapper>
+    <ExperienceSection />
+  </SectionWrapper>
 
-        <Suspense fallback={<SectionLoader />}>
-          <ContactSection />
-        </Suspense>
+  <SectionWrapper>
+    <ProjectsSection />
+  </SectionWrapper>
 
-        <Footer />
-      </main>
+  <SectionWrapper>
+    <ContactSection />
+  </SectionWrapper>
+
+  <Footer />
+
+</main>
 
       <DeveloperActivityWidget />
 

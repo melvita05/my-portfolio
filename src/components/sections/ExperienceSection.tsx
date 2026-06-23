@@ -61,11 +61,11 @@ export default function ExperienceSection() {
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="experience" className="min-h-screen flex items-center justify-center py-20">
+<section id="experience" className="relative py-24 mt-20">
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           ref={ref}
-          className="text-center mb-16"
+          className="text-center mb-24"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -89,8 +89,8 @@ export default function ExperienceSection() {
           </motion.h2>
         </motion.div>
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Vertical timeline line */}
+<div className="relative max-w-4xl mx-auto mt-10">
+            {/* Vertical timeline line */}
           <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 hidden sm:block">
             <motion.div
               className="w-full bg-gradient-to-b from-primary-500 via-cyan-500 to-transparent rounded-full"

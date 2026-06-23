@@ -44,7 +44,7 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
   return (
     <section
       id="hero"
-     className="min-h-screen flex items-center justify-center relative overflow-hidden pt-32"
+     className="h-screen flex items-center justify-center relative overflow-hidden pt-32"
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">

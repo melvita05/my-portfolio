@@ -172,7 +172,11 @@ amount: 0.1,
     
 
   return (
-<section id="skills" ref={skillsRef} className="py-10">
+<section
+  id="skills"
+  ref={skillsRef}
+  className="w-full py-10">
+
                   <div className="container mx-auto px-4 lg:px-8">
 
         {/* HEADER */}
@@ -213,15 +217,15 @@ animate={skillsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
         
 
         {/* CERTIFICATIONS */}
-<motion.div ref={certsRef} className="text-center mt-24 mb-10">
+<motion.div ref={certsRef} className="text-center mt-16 mb-6">
                 <h3 className="text-2xl font-bold">
             <span className="text-white">Certificate </span>
             <span className="gradient-text">Courses</span>
           </h3>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
-          {certifications.map((cert, i) => (
+<div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto mb-16">
+            {certifications.map((cert, i) => (
             <motion.div
               key={cert.title}
               className={`glass-card ${colorMap[cert.color].border}`}
