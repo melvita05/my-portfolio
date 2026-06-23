@@ -1,8 +1,8 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
+import { useEffect, useRef ,useState} from 'react';
 import { Globe, Server, Database, Settings, CheckCircle, Building } from 'lucide-react';
 import TechConstellation from '../skills/TechConstellation';
-import CircularSkills from "../skills/CircularSkill";
+//import CircularSkills from "../skills/CircularSkill";
 
 
 
@@ -50,82 +50,133 @@ const colorMap: Record<string, any> = {
     tag: 'tech-badge tech-badge-cyan',
     check: 'text-cyan-400',
   },
-  accent: {
-    bg: 'bg-accent-teal/20',
-    border: 'hover:border-accent-teal/50',
-    text: 'text-accent-teal',
-    tag: 'bg-accent-teal/15 text-teal-300 border-accent-teal/30',
-    check: 'text-accent-teal',
-  },
-  sky: {
-    bg: 'bg-accent-sky/20',
-    border: 'hover:border-accent-sky/50',
-    text: 'text-accent-sky',
-    tag: 'bg-accent-sky/15 text-sky-300 border-accent-sky/30',
-    check: 'text-accent-sky',
-  },
+ accent: {
+  bg: 'bg-teal-500/20',
+  border: 'hover:border-teal-500/50',
+  text: 'text-teal-400',
+  tag: 'bg-teal-500/15 text-teal-300 border-teal-500/30',
+  check: 'text-teal-400',
+},
+sky: {
+  bg: 'bg-sky-500/20',
+border: 'border border-white/10 hover:border-teal-500/50',
+  text: 'text-sky-400',
+  tag: 'bg-sky-500/15 text-sky-300 border-sky-500/30',
+  check: 'text-sky-400',
+},
 };
 
-const CircularSkill = ({ name, percent, color }: any) => {
+
+const CircularSkill = ({ name, percent, color, trigger }: any) => {
+  const [display, setDisplay] = useState(0);
+
   const radius = 50;
   const stroke = 8;
   const normalizedRadius = radius - stroke * 2;
   const circumference = 2 * Math.PI * normalizedRadius;
 
-  const strokeDashoffset =
-    circumference - (percent / 100) * circumference;
+useEffect(() => {
+  if (!trigger) {
+    setDisplay(0);
+    return;
+  }
+
+  const controls = animate(0, percent, {
+    duration: 1.5,
+    ease: "easeInOut",
+    onUpdate: (v) => setDisplay(Math.round(v)),
+  });
+
+  return () => controls.stop();
+}, [trigger, percent]);
 
   return (
-    <div className="flex flex-col items-center">
-      <svg height={120} width={120}>
-        {/* background circle */}
-        <circle
-          stroke="#1f2937"
-          fill="transparent"
-          strokeWidth={stroke}
-          r={normalizedRadius}
-          cx={60}
-          cy={60}
-        />
+    <div className="flex flex-col items-center justify-center">
+      <div className="relative w-[120px] h-[120px]">
+        <svg height={120} width={120} className="rotate-[-90deg]">
 
-        {/* progress circle */}
-        <circle
-          stroke={color}
-          fill="transparent"
-          strokeWidth={stroke}
-          strokeLinecap="round"
-          strokeDasharray={`${circumference} ${circumference}`}
-          strokeDashoffset={strokeDashoffset}
-          r={normalizedRadius}
-          cx={60}
-          cy={60}
-          style={{
-            transition: 'stroke-dashoffset 1.2s ease-in-out',
-          }}
-        />
-      </svg>
+          <circle
+            stroke="#1f2937"
+            fill="transparent"
+            strokeWidth={stroke}
+            r={normalizedRadius}
+            cx={60}
+            cy={60}
+          />
 
-      <div className="text-center -mt-16">
-        <p className="text-white font-semibold">{name}</p>
-        <p className="text-cyan-400">{percent}%</p>
+          <motion.circle
+            stroke={color}
+            fill="transparent"
+            strokeWidth={stroke}
+            strokeLinecap="round"
+            r={normalizedRadius}
+            cx={60}
+            cy={60}
+            strokeDasharray={circumference}
+            animate={{
+              strokeDashoffset: trigger
+                ? circumference - (percent / 100) * circumference
+                : circumference,
+            }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+          />
+        </svg>
+
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.p className="text-white font-bold text-lg">
+    {display}%
+
+</motion.p>
+        </div>
       </div>
+
+      <p className="text-white font-semibold mt-2">{name}</p>
     </div>
   );
 };
-
 export default function SkillsSection() {
   const skillsRef = useRef(null);
   const certsRef = useRef(null);
+const circularRef = useRef(null);
+  const circularInView = useInView(circularRef, {
+  once: true,
+  amount: 0.3,
+});
 
-  const skillsInView = useInView(skillsRef, { once: true, margin: '-100px' });
-  const certsInView = useInView(certsRef, { once: true, margin: '-100px' });
+  const skillsInView = useInView(skillsRef, {
+    once: false,
+amount: 0.1,
+  });
+
+  
+  const certsInView = useInView(certsRef, {
+    once: false,
+    margin: '-100px',
+  });
+
+//    const [startCircular, setStartCircular] = useState(false);
+
+// useEffect(() => {
+//   if (skillsInView) {
+//     const timer = setTimeout(() => {
+//       setStartCircular(true);
+//     }, 300); // small delay after entering section
+
+//     return () => clearTimeout(timer);
+//   } else {
+//     setStartCircular(false);
+//   }
+// }, [skillsInView]);
+ 
+
+    
 
   return (
-    <section id="skills" className="py-20 min-h-screen">
-      <div className="container mx-auto px-4 lg:px-8">
+<section id="skills" ref={skillsRef} className="py-10">
+                  <div className="container mx-auto px-4 lg:px-8">
 
         {/* HEADER */}
-        <motion.div ref={skillsRef} className="text-center mb-12"
+<motion.div className="text-center mt-10 mb-4"
           initial={{ opacity: 0, y: 50 }}
           animate={skillsInView ? { opacity: 1, y: 0 } : {}}
         >
@@ -133,35 +184,37 @@ export default function SkillsSection() {
             WHAT I WORK WITH
           </p>
 
-          <h2 className="text-5xl sm:text-6xl font-extrabold">
-            <span className="text-white">My </span>
+<h2 className="text-4xl sm:text-5xl font-extrabold">
+              <span className="text-white">My </span>
             <span className="gradient-text">Skills</span>
           </h2>
         </motion.div>
 
         {/* TECH CONSTELLATION */}
-        <TechConstellation isInView={skillsInView} />
+<TechConstellation isInView={skillsInView} />
         {/* CIRCULAR SKILLS SECTION */}
-<div className="grid grid-cols-2 md:grid-cols-4 gap-10 mt-16 mb-20">
-  {circularSkills.map((skill, i) => (
-    <motion.div
-      key={skill.name}
-      initial={{ opacity: 0, scale: 0.5 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay: i * 0.1 }}
-    >
-      <CircularSkill {...skill} />
-    </motion.div>
-  ))}
+<div
+  ref={circularRef}
+className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 mb-16">  
+    {circularSkills.map((skill, i) => (
+  <motion.div
+    key={skill.name}
+    initial={{ opacity: 0, scale: 0.5 }}
+animate={skillsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+    viewport={{ once: true }}
+    transition={{ delay: i * 0.1 }}
+  >
+<CircularSkill {...skill} trigger={circularInView} />
+  </motion.div>
+))}
 </div>
 
         {/* SKILLS */}
         
 
         {/* CERTIFICATIONS */}
-        <motion.div ref={certsRef} className="text-center mb-10">
-          <h3 className="text-2xl font-bold">
+<motion.div ref={certsRef} className="text-center mt-24 mb-10">
+                <h3 className="text-2xl font-bold">
             <span className="text-white">Certificate </span>
             <span className="gradient-text">Courses</span>
           </h3>
@@ -194,7 +247,7 @@ export default function SkillsSection() {
         </div>
 
       </div>
-      <CircularSkills />
+      
     </section>
   );
 }

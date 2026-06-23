@@ -53,8 +53,8 @@ export default function TechConstellation({ isInView }: TechConstellationProps) 
   }, []);
 
   return (
-<div ref={containerRef} className="relative w-full h-[500px]">
-        {/* Connection lines */}
+<div ref={containerRef} className="relative w-full h-[320px] md:h-[350px]">
+          {/* Connection lines */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none">
         {connections.map(([from, to], i) => {
           const fromNode = techNodes.find(n => n.id === from);

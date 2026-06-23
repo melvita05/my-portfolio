@@ -14,6 +14,7 @@ const SkillsSection = lazy(() => import('./components/sections/SkillsSection'));
 const ExperienceSection = lazy(() => import('./components/sections/ExperienceSection'));
 const ProjectsSection = lazy(() => import('./components/sections/ProjectsSection'));
 const ContactSection = lazy(() => import('./components/sections/ContactSection'));
+const AboutSection = lazy(() => import('./components/sections/AboutSection'));
 
 const SectionLoader = () => (
   <div className="min-h-[50vh] flex items-center justify-center">
@@ -56,12 +57,16 @@ function App() {
 
       <main className="relative z-10">
         <Suspense fallback={<SectionLoader />}>
-          <HeroSection currentSection={currentSection} />
-        </Suspense>
+  <HeroSection currentSection={currentSection} />
+</Suspense>
 
-        <Suspense fallback={<SectionLoader />}>
-          <SkillsSection />
-        </Suspense>
+<Suspense fallback={<SectionLoader />}>
+  <AboutSection />
+</Suspense>
+
+<Suspense fallback={<SectionLoader />}>
+  <SkillsSection />
+</Suspense>
 
         <Suspense fallback={<SectionLoader />}>
           <ExperienceSection />

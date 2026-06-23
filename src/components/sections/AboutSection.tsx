@@ -8,31 +8,31 @@ export default function AboutSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   const highlights = [
-    {
-      icon: GraduationCap,
-      title: 'MCA Student',
-      description: 'Pursuing MCA at Canara College, Mangalore',
-      color: 'primary',
-    },
-    {
-      icon: Code2,
-      title: 'MERN Stack',
-      description: 'Full-stack web application development',
-      color: 'blue',
-    },
-    {
-      icon: Briefcase,
-      title: 'Experienced',
-      description: 'Intern at Codelab & Developer at Zephyr',
-      color: 'cyan',
-    },
-    {
-      icon: Layers,
-      title: 'Full-Stack',
-      description: 'React, Node, Express & MongoDB',
-      color: 'pink',
-    },
-  ];
+  {
+    icon: GraduationCap,
+    title: 'MCA Student',
+    description: 'Pursuing MCA at Canara College, Mangalore',
+    color: 'primary',
+  },
+  {
+    icon: Code2,
+    title: 'MERN Developer',
+    description: 'Building modern full-stack web applications',
+    color: 'blue',
+  },
+  {
+    icon: Briefcase,
+    title: 'Internship Experience',
+    description: 'Zephyr Technologies & Codelab System',
+    color: 'cyan',
+  },
+  {
+    icon: Layers,
+    title: 'Full Stack Development',
+    description: 'React.js, Node.js, Express.js & MongoDB',
+    color: 'pink',
+  },
+];
 
   const colorMap: Record<string, string> = {
     primary: 'bg-primary-500/20 text-primary-400',
@@ -42,8 +42,8 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center py-20">
-      <div className="container mx-auto px-4 lg:px-8">
+<section id="about" className="flex items-center justify-center py-20">
+        <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           ref={ref}
           className="text-center mb-16"
@@ -83,11 +83,12 @@ export default function AboutSection() {
             </div>
 
             <p className="text-gray-300 text-lg leading-relaxed mb-5">
-              MCA Student and MERN Stack Developer passionate about building scalable web applications and learning modern technologies.
-            </p>
-            <p className="text-gray-400 leading-relaxed">
-              Experienced in React.js, Node.js, Express.js, MongoDB, REST APIs, and full-stack development through industry experience and real-world projects.
-            </p>
+  I'm Primal Melvita D'Souza, an MCA student and Full Stack Developer with practical experience in MERN Stack development through internships and academic projects.
+</p>
+
+<p className="text-gray-400 leading-relaxed">
+  Currently working as a Full Stack Developer Intern at Zephyr Technologies & Solutions Pvt. Ltd. Skilled in React.js, Node.js, Express.js, MongoDB, REST APIs, Authentication, and Responsive Web Development. Passionate about building scalable applications and solving real-world problems through technology.
+</p>
 
             <div className="mt-6 pt-6 border-t border-white/10 grid sm:grid-cols-2 gap-3 text-sm">
               <div className="flex items-center gap-2 text-gray-400">

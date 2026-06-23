@@ -7,33 +7,32 @@ const certifications = [
   {
     title: 'Data Analytics Using Power BI',
     issuer: 'Codelab System',
-    description: 'Hands-on training in data analysis and visualization using Microsoft Power BI for business intelligence.',
+    description: 'Training in data visualization, dashboards, and business intelligence using Microsoft Power BI.',
     color: 'blue',
     category: 'Data Analytics',
   },
   {
     title: 'Big Data',
     issuer: 'Infosys Springboard',
-    description: 'Foundational concepts of big data technologies, processing frameworks, and real-world applications.',
+    description: 'Fundamentals of big data systems, processing frameworks, and real-world data applications.',
     color: 'cyan',
-    category: 'Big Data',
+    category: 'Data Engineering',
   },
   {
     title: 'Generative AI for All',
     issuer: 'Infosys Springboard',
-    description: 'Introduction to generative AI concepts, tools, and responsible use in modern applications.',
+    description: 'Introduction to generative AI concepts, tools, and responsible AI usage in modern applications.',
     color: 'pink',
     category: 'Artificial Intelligence',
   },
   {
     title: 'Introduction to Cybersecurity',
-    issuer: 'CISCO',
-    description: 'Foundational cybersecurity concepts including threats, network defenses, and security best practices.',
+    issuer: 'Cisco',
+    description: 'Basics of cybersecurity including threats, network security, and defense mechanisms.',
     color: 'green',
     category: 'Cybersecurity',
   },
 ];
-
 const colorClasses = {
   blue: {
     bg: 'bg-blue-500/20',
@@ -70,8 +69,8 @@ export default function CertificationsSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="certifications" className="min-h-screen flex items-center justify-center py-20">
-      <div className="container mx-auto px-4 lg:px-8">
+<section id="certifications" className="py-24">
+        <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           ref={ref}
           className="text-center mb-16"
@@ -85,7 +84,7 @@ export default function CertificationsSection() {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ delay: 0.2 }}
           >
-            CERTIFICATE COURSES
+CERTIFICATIONS & COURSES
           </motion.p>
           <motion.h2
             className="text-4xl sm:text-5xl font-bold"

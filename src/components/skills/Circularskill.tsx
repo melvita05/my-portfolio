@@ -8,10 +8,10 @@ const skills = [
 ];
 
 export default function CircularSkills() {
-  const [animate, setAnimate] = useState(false);
+  const [start, setStart] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setAnimate(true), 300);
+    const timer = setTimeout(() => setStart(true), 300);
     return () => clearTimeout(timer);
   }, []);
 
@@ -23,7 +23,7 @@ export default function CircularSkills() {
         const normalizedRadius = radius - stroke * 2;
         const circumference = normalizedRadius * 2 * Math.PI;
 
-        const strokeDashoffset = animate
+        const strokeDashoffset = start
           ? circumference - (skill.percent / 100) * circumference
           : circumference;
 
@@ -44,7 +44,7 @@ export default function CircularSkills() {
                 fill="transparent"
                 strokeWidth={stroke}
                 strokeLinecap="round"
-                strokeDasharray={circumference + " " + circumference}
+                strokeDasharray={circumference}
                 style={{
                   strokeDashoffset,
                   transition: "stroke-dashoffset 1.2s ease-out",
