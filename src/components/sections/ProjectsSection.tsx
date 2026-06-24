@@ -57,7 +57,10 @@ export default function ProjectsSection() {
   }, []);
 
   return (
-    <section id="projects" className="min-h-screen flex items-center justify-center py-20">
+    <section
+  id="projects"
+  className="py-16 lg:py-24"
+>
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           ref={ref}

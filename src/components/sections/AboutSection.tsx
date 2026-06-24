@@ -42,8 +42,8 @@ export default function AboutSection() {
   };
 
   return (
-<section id="about" className="flex items-center justify-center py-20">
-        <div className="container mx-auto px-4 lg:px-8">
+<section id="about" className="py-16 lg:py-24">
+          <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           ref={ref}
           className="text-center mb-16"

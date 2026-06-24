@@ -80,8 +80,11 @@ export default function ExperienceSection() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-<section id="experience" ref={ref} className="relative py-16 sm:py-28 mt-10 sm:mt-20">
-        <div className="container mx-auto px-4 lg:px-8">
+<section
+  id="experience"
+  ref={ref}
+  className="relative py-16 lg:py-20"
+>        <div className="container mx-auto px-4 lg:px-8">
 
         {/* HEADER */}
         <motion.div

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Power, Code2, Terminal, Briefcase } from 'lucide-react';
-
+import primalImage from '../../assets/primal.png';
 const CODE_LINES = [
   'const developer = {',
   '  name: "Primal Melvita Dsouza",',
@@ -223,7 +223,7 @@ function ProfileDisplay() {
 
         {/* Profile image - 60% larger (was w-20 h-20, now ~w-32 h-32) */}
         <motion.div
-          className="relative w-28 h-28 sm:w-40 sm:h-40 md:w-52 md:h-52 rounded-full overflow-hidden"
+          className="relative w-20 h-20 sm:w-32 sm:h-32 md:w-44 md:h-44 rounded-full overflow-hidden"
           style={{
             boxShadow: '0 0 40px rgba(0,217,165,0.4), 0 0 80px rgba(56,189,248,0.2), inset 0 0 20px rgba(0,0,0,0.3)',
           }}
@@ -240,7 +240,7 @@ function ProfileDisplay() {
           <div className="absolute inset-0 bg-gradient-to-tr from-primary-500/20 via-transparent to-cyan-500/20 pointer-events-none z-10" />
 
           <motion.img
-            src="https://images.pexels.com/photos/3783525/pexels-photo-3783525.jpeg?auto=compress&cs=tinysrgb&w=400"
+            src={primalImage}
             alt="Primal Melvita Dsouza"
          className="w-full h-full object-cover"
             initial={{ scale: 1.1 }}
@@ -569,7 +569,7 @@ export default function DeveloperMonitor({ section }: MonitorContentProps) {
     </div>
   </div>
 
-  <div className="relative monitor-screen h-44 sm:h-72 md:h-[380px]  p-3 sm:p-4 overflow-hidden bg-black">  {/* Animated Grid */}
+  <div className="relative monitor-screen h-40 sm:h-60 md:h-[320px] p-2 sm:p-4 overflow-hidden bg-black">  {/* Animated Grid */}
   <div
     className="absolute inset-0 opacity-20"
     style={{

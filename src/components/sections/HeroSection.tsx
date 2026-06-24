@@ -44,7 +44,8 @@ export default function HeroSection({ currentSection }: HeroSectionProps) {
   return (
     <section
   id="hero"
-className="min-h-screen lg:min-h-screen flex items-center justify-center relative overflow-hidden pt-10 lg:pt-32 pb-10">
+className="min-h-[85vh] lg:min-h-screen flex items-center justify-center relative overflow-hidden pt-4 lg:pt-20 pb-4"
+>
         {/* Background Glow */}
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute top-20 left-20 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px]" />
@@ -53,7 +54,7 @@ className="min-h-screen lg:min-h-screen flex items-center justify-center relativ
     </div>
 
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-4 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-2 lg:gap-12 items-center">
           <motion.div
 className="order-2 lg:order-1 text-center lg:text-left"
             initial={{ opacity: 0, x: -50 }}
