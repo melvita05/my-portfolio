@@ -223,7 +223,7 @@ function ProfileDisplay() {
 
         {/* Profile image - 60% larger (was w-20 h-20, now ~w-32 h-32) */}
         <motion.div
-          className="relative w-40 h-40 sm:w-52 sm:h-52 rounded-full overflow-hidden"
+          className="relative w-28 h-28 sm:w-40 sm:h-40 md:w-52 md:h-52 rounded-full overflow-hidden"
           style={{
             boxShadow: '0 0 40px rgba(0,217,165,0.4), 0 0 80px rgba(56,189,248,0.2), inset 0 0 20px rgba(0,0,0,0.3)',
           }}
@@ -552,22 +552,24 @@ export default function DeveloperMonitor({ section }: MonitorContentProps) {
   };
 
   return (
-<div className="relative w-full max-w-xl mx-auto">
+<div className="relative w-full max-w-xl mx-auto px-2 sm:px-0">
         <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 via-cyan-500/20 to-yellow-500/20 blur-xl rounded-3xl" />
+<div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-cyan-500/10 to-transparent blur-2xl rounded-3xl" />
+<div className="relative bg-black/90 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-3 sm:p-4 shadow-[0_0_20px_rgba(139,92,246,0.3)]">
 
-<div className="relative bg-black/90 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-3 sm:p-4 shadow-[0_0_60px_rgba(139,92,246,0.35)]">          <div className="flex items-center gap-1.5 sm:gap-2 mb-3">
-            <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
-            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
-            <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
-            <div className="ml-2 flex-1 bg-gray-700 rounded-full h-4 px-2 flex items-center">
-              <span className="text-[8px] text-gray-400 font-mono truncate">
-                vscode://portfolio/developer.js
-              </span>
-            </div>
-          </div>
+  <div className="flex items-center gap-1.5 sm:gap-2 mb-3">
+    <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
+    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
+    <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
 
-<div className="relative monitor-screen h-72 sm:h-80 md:h-[380px] p-3 sm:p-4 overflow-hidden bg-black">  {/* Animated Grid */}
+    <div className="ml-2 flex-1 bg-gray-700 rounded-full h-4 px-2 flex items-center">
+      <span className="text-[8px] text-gray-400 font-mono truncate">
+        vscode://portfolio/developer.js
+      </span>
+    </div>
+  </div>
+
+  <div className="relative monitor-screen h-44 sm:h-72 md:h-[380px]  p-3 sm:p-4 overflow-hidden bg-black">  {/* Animated Grid */}
   <div
     className="absolute inset-0 opacity-20"
     style={{
@@ -581,7 +583,7 @@ export default function DeveloperMonitor({ section }: MonitorContentProps) {
 
   {/* Scanning Line */}
   <motion.div
-    className="absolute left-0 right-0 h-[2px] bg-cyan-400 shadow-[0_0_20px_#00ffff]"
+    className="absolute left-0 right-0 h-[2px] bg-cyan-400 shadow-[0_0_10px_rgba(0,255,255,0.5)]"
     animate={{
       top: ["0%", "100%"],
     }}
@@ -626,7 +628,7 @@ export default function DeveloperMonitor({ section }: MonitorContentProps) {
 </div>
 
         <div className="absolute -bottom-2 sm:-bottom-3 left-1/2 transform -translate-x-1/2 w-32 sm:w-40 h-3 sm:h-4 bg-gradient-to-b from-gray-700 to-gray-800 rounded-b-lg" />
-        <div className="absolute -bottom-6 sm:-bottom-8 left-1/2 transform -translate-x-1/2 w-48 sm:w-60 h-2.5 sm:h-3 bg-gray-900 rounded-xl" />
+        <div className="hidden lg:block absolute bottom-8 left-1/2 transform -translate-x-1/2 w-48 sm:w-60 h-2.5 sm:h-3 bg-gray-900 rounded-xl" />
       </div>
     </div>
   );

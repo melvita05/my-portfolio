@@ -12,16 +12,19 @@
   html {
     scroll-behavior: smooth;
   }
-
-  body {
-    @apply bg-dark-900 text-white font-sans;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-     scroll-snap-type: y proximity;
+ 
+ body {
+  @apply bg-dark-900 text-white font-sans;
   overflow-x: hidden;
-  }
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
+@media (min-width: 1024px) {
+  body {
+    scroll-snap-type: y proximity;
+  }
+}
   ::-webkit-scrollbar {
     width: 8px;
   }

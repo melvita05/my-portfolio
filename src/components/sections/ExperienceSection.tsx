@@ -80,8 +80,8 @@ export default function ExperienceSection() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="experience" ref={ref} className="relative py-28 mt-20">
-      <div className="container mx-auto px-4 lg:px-8">
+<section id="experience" ref={ref} className="relative py-16 sm:py-28 mt-10 sm:mt-20">
+        <div className="container mx-auto px-4 lg:px-8">
 
         {/* HEADER */}
         <motion.div
@@ -111,7 +111,7 @@ export default function ExperienceSection() {
             />
           </div>
 
-          <div className="space-y-16">
+          <div className="space-y-8 sm:space-y-16">
             {experiences.map((exp, index) => {
 const colors = colorMap[exp.color as keyof typeof colorMap];
               return (
@@ -152,7 +152,7 @@ const colors = colorMap[exp.color as keyof typeof colorMap];
                       transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                     />
 
-                    <div className="relative p-7 sm:p-8">
+                    <div className="relative p-4 sm:p-8">
 
                       {/* HEADER */}
                       <div className="flex justify-between flex-wrap gap-4 mb-6">
@@ -163,7 +163,7 @@ const colors = colorMap[exp.color as keyof typeof colorMap];
                           </div>
 
                           <div>
-                            <h3 className="text-xl font-bold text-white">
+                            <h3 className="text-lg sm:text-xl font-bold text-white">
                               {exp.role}
                             </h3>
                             <p className={`${colors.text} font-medium`}>
