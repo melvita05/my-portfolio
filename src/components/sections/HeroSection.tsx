@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+
 import {
   Github,
   Linkedin,
@@ -10,7 +11,7 @@ import {
   Briefcase,
 } from 'lucide-react';
 import DeveloperMonitor from '../monitor/DeveloperMonitor';
-
+import ResumePDF from '../../assets/ats resume final.pdf';
 interface HeroSectionProps {
   currentSection: string;
 }
@@ -165,15 +166,14 @@ className="neon-button flex items-center gap-2 text-white hover:scale-105 transi
                 <ExternalLink className="w-4 h-4" />
                 View Projects
               </button>
-
-              <a
-                href="#"
-className="neon-button flex items-center gap-2 text-white hover:scale-105 transition-all duration-300"
-                onClick={(e) => e.preventDefault()}
-              >
-                <Download className="w-4 h-4" />
-                Resume
-              </a>
+<a
+  href={ResumePDF}
+  download="Primal_Melvita_Dsouza_Resume.pdf"
+  className="neon-button flex items-center gap-2 text-white hover:scale-105 transition-all duration-300"
+>
+  <Download className="w-4 h-4" />
+  Resume
+</a>
 
               <button
                 onClick={() => scrollToSection('contact')}
