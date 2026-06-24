@@ -159,8 +159,8 @@ function ProfileDisplay() {
         <motion.div
           className="absolute inset-0 rounded-full"
           style={{
-            width: '130%',
-            height: '130%',
+            width: '115%',
+height: '115%',
             left: '-15%',
             top: '-15%',
           }}
@@ -191,8 +191,8 @@ function ProfileDisplay() {
         <motion.div
           className="absolute rounded-full"
           style={{
-            width: '145%',
-            height: '145%',
+           width: '125%',
+height: '125%',
             left: '-22.5%',
             top: '-22.5%',
             background: 'transparent',
@@ -223,7 +223,7 @@ function ProfileDisplay() {
 
         {/* Profile image - 60% larger (was w-20 h-20, now ~w-32 h-32) */}
         <motion.div
-          className="relative w-20 h-20 sm:w-32 sm:h-32 md:w-44 md:h-44 rounded-full overflow-hidden"
+          className="relative w-16 h-16 sm:w-32 sm:h-32 md:w-44 md:h-44 rounded-full overflow-hidden"
           style={{
             boxShadow: '0 0 40px rgba(0,217,165,0.4), 0 0 80px rgba(56,189,248,0.2), inset 0 0 20px rgba(0,0,0,0.3)',
           }}
@@ -252,7 +252,7 @@ function ProfileDisplay() {
 
       {/* Name and title */}
       <motion.div
-        className="mt-5 text-center"
+className="mt-2 text-center"
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6 }}
@@ -278,7 +278,7 @@ function ProfileDisplay() {
 
       {/* Compact tech badges */}
       <motion.div
-        className="flex gap-1.5 mt-3 flex-wrap justify-center"
+        className="flex gap-1 mt-2 flex-wrap justify-center"
         initial={{ y: 10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.7 }}
@@ -298,7 +298,7 @@ function ProfileDisplay() {
 
       {/* Experience compact */}
       <motion.div
-        className="w-full mt-4 px-2"
+        className="hidden md:block w-full mt-4 px-2"
         initial={{ y: 10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.9 }}
@@ -569,7 +569,7 @@ export default function DeveloperMonitor({ section }: MonitorContentProps) {
     </div>
   </div>
 
-  <div className="relative monitor-screen h-40 sm:h-60 md:h-[320px] p-2 sm:p-4 overflow-hidden bg-black">  {/* Animated Grid */}
+  <div className="relative monitor-screen h-[280px] sm:h-60 md:h-[320px] p-2 sm:p-4 overflow-hidden bg-black">  {/* Animated Grid */}
   <div
     className="absolute inset-0 opacity-20"
     style={{
