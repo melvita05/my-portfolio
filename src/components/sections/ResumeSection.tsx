@@ -2,8 +2,16 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Download, ExternalLink, FileText, Award, GraduationCap, Code2 } from 'lucide-react';
-
+import ResumePDF from '../../assets/ats resume final.pdf';
 export default function ResumeSection() {
+  const downloadResume = () => {
+  const link = document.createElement('a');
+  link.href = ResumePDF;
+  link.download = 'Primal_Melvita_Dsouza_Resume.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
@@ -87,22 +95,24 @@ export default function ResumeSection() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <motion.button
-                      className="neon-button flex items-center justify-center gap-2 text-white"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
+                   <motion.button
+  onClick={downloadResume}
+  className="neon-button flex items-center justify-center gap-2 text-white"
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+>
                       <Download className="w-5 h-5" />
                       Download Resume
                     </motion.button>
-                    <motion.button
-                      className="neon-button-outline flex items-center justify-center gap-2 text-white"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                      View Resume
-                    </motion.button>
+                   <motion.button
+  onClick={() => window.open(ResumePDF, '_blank')}
+  className="neon-button-outline flex items-center justify-center gap-2 text-white"
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+>
+  <ExternalLink className="w-5 h-5" />
+  View Resume
+</motion.button>
                   </div>
                 </div>
               </div>

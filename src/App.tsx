@@ -15,6 +15,7 @@ const ExperienceSection = lazy(() => import('./components/sections/ExperienceSec
 const ProjectsSection = lazy(() => import('./components/sections/ProjectsSection'));
 const ContactSection = lazy(() => import('./components/sections/ContactSection'));
 const AboutSection = lazy(() => import('./components/sections/AboutSection'));
+const ResumeSection = lazy(() => import('./components/sections/ResumeSection'));
 import SectionWrapper from './components/ui/SectionWrapper';
 
 const SectionLoader = () => (
@@ -73,6 +74,11 @@ function App() {
     <ExperienceSection />
   </SectionWrapper>
 
+<SectionWrapper>
+  <ResumeSection />
+</SectionWrapper>
+
+
   <SectionWrapper>
     <ProjectsSection />
   </SectionWrapper>
@@ -80,6 +86,8 @@ function App() {
   <SectionWrapper>
     <ContactSection />
   </SectionWrapper>
+
+
 
   <Footer />
 

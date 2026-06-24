@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Code2, Download } from 'lucide-react';
 import { SECTION_ORDER } from '../../utils/helpers';
-
+import ResumePDF from '../../assets/ats resume final.pdf';
 const navItems = [
   { id: SECTION_ORDER[0], label: 'Home' },
   { id: SECTION_ORDER[1], label: 'Skills' },
@@ -14,7 +14,14 @@ const navItems = [
 interface NavigationProps {
   currentSection: string;
 }
-
+const downloadResume = () => {
+  const link = document.createElement('a');
+  link.href = ResumePDF;
+  link.download = 'Primal_Melvita_Dsouza_Resume.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 export default function Navigation({ currentSection }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -88,15 +95,16 @@ export default function Navigation({ currentSection }: NavigationProps) {
 
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center gap-3">
-              <motion.button
-                onClick={() => scrollToSection('contact')}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white neon-button"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Download className="w-4 h-4" />
-                Download Resume
-              </motion.button>
+             <motion.button
+  onClick={downloadResume}
+  className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white neon-button"
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+>
+  <Download className="w-4 h-4" />
+  Download Resume
+</motion.button>
+                
             </div>
 
             {/* Mobile hamburger */}
@@ -125,7 +133,10 @@ export default function Navigation({ currentSection }: NavigationProps) {
           >
             <div
               className="absolute inset-0 bg-dark-900/95 backdrop-blur-xl"
-              onClick={() => setIsOpen(false)}
+             onClick={() => {
+  downloadResume();
+  setIsOpen(false);
+}}
             />
             <motion.div
               className="absolute top-16 left-4 right-4 glass-card p-5"
@@ -153,7 +164,10 @@ export default function Navigation({ currentSection }: NavigationProps) {
                 ))}
               </div>
               <motion.button
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+  downloadResume();
+  setIsOpen(false);
+}}
                 className="w-full neon-button flex items-center justify-center gap-2 text-white py-3"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

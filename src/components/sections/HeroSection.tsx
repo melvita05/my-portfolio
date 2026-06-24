@@ -17,6 +17,14 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ currentSection }: HeroSectionProps) {
+  const downloadResume = () => {
+  const link = document.createElement("a");
+  link.href = ResumePDF;
+  link.download = "Primal_Resume.pdf";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -166,14 +174,13 @@ className="neon-button flex items-center gap-2 text-white hover:scale-105 transi
                 <ExternalLink className="w-4 h-4" />
                 View Projects
               </button>
-<a
-  href={ResumePDF}
-  download="Primal_Melvita_Dsouza_Resume.pdf"
-  className="neon-button flex items-center gap-2 text-white hover:scale-105 transition-all duration-300"
+<button
+  onClick={downloadResume}
+  className="neon-button flex items-center gap-2 text-white"
 >
   <Download className="w-4 h-4" />
   Resume
-</a>
+</button>
 
               <button
                 onClick={() => scrollToSection('contact')}
